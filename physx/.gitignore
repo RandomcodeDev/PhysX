@@ -2,3 +2,6 @@ bin/
 compiler/linux-*
 compiler/vc*
 include/PxConfig.h
+**/build/
+**/.xmake/
+**/vsxmake*
