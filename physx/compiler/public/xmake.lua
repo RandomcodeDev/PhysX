@@ -30,6 +30,47 @@ else
     add_defines("NDEBUG")
 end
 
+function fix_target(target)
+    if is_plat("gdk", "gdkx", "xbox360") and get_config("toolchain") ~= "mingw" then
+        target:set("prefixname", "")
+        if target:kind() == "binary" then
+            target:set("extension", ".exe")
+        elseif target:kind() == "static" then
+            target:set("extension", ".lib")
+        elseif target:kind() == "shared" then
+            target:set("extension", ".dll")
+        end
+    elseif is_plat("switch") then
+        if target:kind() == "binary" then
+            target:set("prefixname", "")
+            target:set("extension", ".nss")
+        elseif target:kind() == "static" then
+            target:set("prefixname", "lib")
+            target:set("extension", ".a")
+        elseif target:kind() == "shared" then
+            target:set("prefixname", "lib")
+            target:set("extension", ".nrs")
+        end
+    elseif is_plat("switchhb", "psp", "ps3") then
+        if target:kind() == "binary" then
+            target:set("prefixname", "")
+            target:set("extension", ".elf")
+        elseif target:kind() == "static" then
+            target:set("prefixname", "lib")
+            target:set("extension", ".a")
+        elseif target:kind() == "shared" then
+            target:set("prefixname", "lib")
+            target:set("extension", ".elf")
+        end
+    elseif not is_plat("windows") then
+        -- Of course POSIX or GNU or whoever gets to have "libutil.a" be a reserved name
+        -- Other systems don't need this, since they don't pull shit like this
+        if target:kind() == "static" then
+            target:set("suffixname", "-purpl")
+        end
+    end
+end
+
 target("PhysXFoundation")
     set_kind("static")
     add_headerfiles(
@@ -138,6 +179,8 @@ target("PhysXFoundation")
     elseif is_unix then
     elseif is_switch then
     end
+
+    on_load(fix_target)
 target_end()
 
 target("LowLevel")
@@ -252,6 +295,8 @@ target("LowLevel")
     elseif is_unix then
     elseif is_switch then
     end
+
+    on_load(fix_target)
 target_end()
 
 target("LowLevelAABB")
@@ -311,6 +356,8 @@ target("LowLevelAABB")
     elseif is_unix then
     elseif is_switch then
     end
+
+    on_load(fix_target)
 target_end()
 
 target("LowLevelDynamics")
@@ -436,6 +483,8 @@ target("LowLevelDynamics")
     elseif is_unix then
     elseif is_switch then
     end
+
+    on_load(fix_target)
 target_end()
 
 target("PhysX")
@@ -725,6 +774,8 @@ target("PhysX")
     add_deps("PhysXFoundation", "LowLevel", "LowLevelAABB", "LowLevelDynamics", "PhysXCommon"
     -- , "PhysXPvdSDK" "PhysXTask", "SceneQuery", "SimulationController"
     )
+
+    on_load(fix_target)
 target_end()
 
 target("PhysXCharacterController")
@@ -770,6 +821,8 @@ target("PhysXCharacterController")
     )
 
     add_deps("PhysXFoundation")
+
+    on_load(fix_target)
 target_end()
 
 target("PhysXCommon")
@@ -1283,6 +1336,8 @@ target("PhysXCommon")
     )
 
     add_deps("PhysXFoundation")
+
+    on_load(fix_target)
 target_end()
 
 target("PhysXCooking")
@@ -1318,4 +1373,8 @@ target("PhysXCooking")
     )
 
     add_deps("PhysXCommon", "PhysXFoundation")
+
+    on_load(fix_target)
 target_end()
+
+
