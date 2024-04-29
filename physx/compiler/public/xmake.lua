@@ -4,21 +4,33 @@ add_rules(
     "plugin.vsxmake.autoupdate"
 )
 
+if os.isfile(path.join("..", "..", "..", "..", "platform", "switch", "switch.lua")) then
+    includes(path.join("..", "..", "..", "..", "platform", "switch", "switch.lua"))
+end
+
+if os.isfile(path.join("..", "..", "..", "..", "platform", "ps5", "ps5.lua")) then
+    includes(path.join("..", "..", "..", "..", "platform", "ps5", "ps5.lua"))
+end
+
+if os.isfile(path.join("..", "..", "..", "support", "platform", "win32", "xbox360.lua")) then
+    includes(path.join("..", "..", "..", "support", "platform", "win32", "xbox360.lua"))
+end
+
 set_project("PhysX")
 set_version("5.3.1", {build = "%Y%m%d%H%M"})
 
-set_allowedplats("gdk", "gdkx", "windows", "linux", "freebsd", "switch")
-set_allowedarchs("gdk|x64", "gdkx|x64", "switch|arm64")
+set_allowedplats("gdk", "gdkx", "xbox360", "windows", "linux", "freebsd", "switch", "ps5")
+set_allowedarchs("gdk|x64", "gdkx|x64", "xbox360|powerpc64", "switch|arm64", "ps5|x64")
 
 set_languages("cxx98")
 set_exceptions("none")
 
 physx_root = path.join("$(scriptdir)", "..", "..")
 
-is_windows = is_plat("gdk", "gdkx", "windows")
+is_windows = is_plat("gdk", "gdkx", "xbox360", "windows")
 is_gdk = is_plat("gdk", "gdkx")
 is_win32 = is_plat("windows")
-is_unix = is_plat("linux", "freebsd")
+is_unix = is_plat("linux", "freebsd", "switch", "ps5")
 is_switch = is_plat("switch")
 
 add_defines("PX_PHYSX_STATIC_LIB")
