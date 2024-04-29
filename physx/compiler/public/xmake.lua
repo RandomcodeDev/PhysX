@@ -777,8 +777,8 @@ target("PhysX")
         "LowLevelAABB",
         "LowLevelDynamics",
         "PhysXCommon",
-    -- ,"PhysXPvdSDK",
-    --  "PhysXTask",
+        "PhysXPvdSDK",
+        "PhysXTask",
         "SceneQuery",
         "SimulationController"
     )
@@ -1649,7 +1649,7 @@ target("PhysXExtensions")
 
     add_deps(
         "PhysXFoundation",
-        --"PhysXPvdSDK",
+        "PhysXPvdSDK",
         "PhysX"
     )
 target_end()
@@ -2059,5 +2059,125 @@ target("SimulationController")
         path.join(physx_root, "source", "lowleveldynamics/include"),
 
         path.join(physx_root, "source", "lowlevelaabb/include")
+    )
+target_end()
+
+target("FastXml")
+    set_kind("static")
+    add_headerfiles(
+        path.join(physx_root, "source", "fastxml", "include", "PsFastXml.h")
+    )
+    add_files(
+        path.join(physx_root, "source", "fastxml", "src", "PsFastXml.cpp")
+    )
+
+    add_includedirs(
+        path.join(physx_root, "source", "foundation"),
+
+        path.join(physx_root, "source", "fastxml", "include")
+    )
+target_end()
+
+target("PhysXPvdSDK")
+    set_kind("static")
+    add_headerfiles(
+        path.join(physx_root, "include", "pvd", "PxPvd.h"),
+        path.join(physx_root, "include", "pvd", "PxPvdTransport.h"),
+
+        path.join(physx_root, "source", "pvd", "include", "PsPvd.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxProfileAllocatorWrapper.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdClient.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdDataStream.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdDataStreamHelpers.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdErrorCodes.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdObjectModelBaseTypes.h"),
+        path.join(physx_root, "source", "pvd", "include", "PxPvdUserRenderer.h"),
+
+        path.join(physx_root, "source", "pvd", "src", "PxProfileContextProvider.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileContextProviderImpl.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileDataBuffer.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileDataParsing.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventBuffer.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventBufferAtomic.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventBufferClient.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventBufferClientManager.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventId.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventMutex.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventNames.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEvents.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventSender.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventSerialization.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileMemory.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileMemoryBuffer.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileMemoryEventBuffer.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileMemoryEvents.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileScopedEvent.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileScopedMutexLock.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdProfileZone.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileZoneImpl.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileZoneManager.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxProfileZoneManagerImpl.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdBits.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdByteStreams.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdCommStreamEvents.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdCommStreamEventSink.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdCommStreamTypes.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdDefaultFileTransport.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdDefaultSocketTransport.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdFoundation.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdImpl.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdInternalByteStreams.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdMarshalling.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdMemClient.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectModelInternalTypeDefs.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectModelInternalTypes.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectModelMetaData.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectRegistrar.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdProfileZoneClient.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdUserRenderImpl.h"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdUserRenderTypes.h"),
+
+        path.join(physx_root, "source", "filebuf", "include", "PsFileBuffer.h")
+    )
+    add_files(
+        path.join(physx_root, "source", "pvd", "src", "PxProfileEventImpl.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvd.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdDataStream.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdDefaultFileTransport.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdDefaultSocketTransport.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdImpl.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdMemClient.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectModelMetaData.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdObjectRegistrar.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdProfileZoneClient.cpp"),
+        path.join(physx_root, "source", "pvd", "src", "PxPvdUserRenderer.cpp")
+    )
+
+    add_includedirs(
+        path.join(physx_root, "include"),
+        path.join(physx_root, "source", "pvd", "include"),
+        path.join(physx_root, "source", "filebuf", "include")
+    )
+
+    add_deps(
+        "PhysXFoundation"
+    )
+target_end()
+
+target("PhysXTask")
+    set_kind("static")
+    add_headerfiles(
+        path.join(physx_root, "include", "task", "PxCpuDispatcher.h"),
+        path.join(physx_root, "include", "task", "PxTask.h"),
+        path.join(physx_root, "include", "task", "PxTaskManager.h")
+    )
+    add_files(
+        path.join(physx_root, "source", "task", "src", "TaskManager.cpp")
+    )
+
+    add_includedirs(
+        path.join(physx_root, "source", "foundation"),
+
+        path.join(physx_root, "include")
     )
 target_end()
