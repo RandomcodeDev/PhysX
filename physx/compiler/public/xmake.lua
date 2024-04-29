@@ -27,5 +27,5 @@ set_exceptions("none")
 physx_root = path.join("$(scriptdir)", "..", "..")
 
 includes("physx.lua")
-setup_physx(physx_root, nil, "PhysX SDK", "none")
+setup_physx(physx_root, function() end, "PhysX SDK", "none")
 
