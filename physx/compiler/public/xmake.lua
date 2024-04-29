@@ -767,10 +767,6 @@ target("PhysX")
         path.join(physx_root, "pvdruntime", "include")
     )
 
-    if is_windows then
-        path.join(physx_root, "source", "compiler", "windows", "resource", "PhysX.rc")
-    end
-
     add_deps(
         "PhysXFoundation",
         "LowLevel",
