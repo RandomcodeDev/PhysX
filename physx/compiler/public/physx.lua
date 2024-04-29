@@ -14,6 +14,13 @@ function setup_physx(physx_root, fix_target, group, warnings)
         add_defines("NDEBUG")
     end
 
+    if is_plat("switch") then
+        add_defines("PX_SWITCH")
+    elseif is_plat("xbox360") then
+        add_defines("PX_XBOX360")
+        add_defines("PX_PPC64")
+    end
+
     target("PhysXFoundation")
         set_kind("static")
         add_headerfiles(
@@ -1619,7 +1626,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
             "PhysXPvdSDK",
             "PhysX"
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -1694,7 +1701,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "source", "pvd", "include")
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -1823,7 +1830,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
             "PhysX",
             "PhysXExtensions"
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -1877,7 +1884,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "source", "pvd", "include")
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -2047,7 +2054,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "source", "lowlevelaabb/include")
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -2068,7 +2075,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "source", "fastxml", "include")
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -2159,7 +2166,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
         add_deps(
             "PhysXFoundation"
         )
-    
+
         on_load(fix_target)
     target_end()
 
@@ -2182,7 +2189,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "include")
         )
-    
+
         on_load(fix_target)
     target_end()
 end

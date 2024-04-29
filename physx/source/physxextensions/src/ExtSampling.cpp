@@ -361,7 +361,7 @@ namespace physx
 		PxArray<PxI32> excessList;
 		Cm::BasicRandom rnd;
 
-		bool gridResolutionValid = false;
+		bool gridResolutionValid;
 
 		//Output
 		PxArray<PxVec3> result;

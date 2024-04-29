@@ -38,9 +38,9 @@ namespace physx
 
 namespace Ext
 {
-	using Edge = PxPair<PxI32, PxI32>;
-	using Tetrahedron = Gu::TetrahedronT<PxI32>;
-	using Tetrahedron16 = Gu::TetrahedronT<PxI16>;
+    typedef PxPair<PxI32, PxI32> Edge;
+	typedef Gu::TetrahedronT<PxI32> Tetrahedron;
+	typedef Gu::TetrahedronT<PxI16> Tetrahedron16;
 
 	void buildNeighborhood(const PxArray<Tetrahedron>& tets, PxArray<PxI32>& result);
 	void buildNeighborhood(const PxI32* tets, PxU32 numTets, PxArray<PxI32>& result);

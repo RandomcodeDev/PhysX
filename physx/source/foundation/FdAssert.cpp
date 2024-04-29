@@ -33,7 +33,12 @@
 #if PX_WINDOWS_FAMILY
 #include <crtdbg.h>
 #elif PX_SWITCH
-#include "foundation/switch/PxSwitchAbort.h"
+_Noreturn void abort(const char* message)
+{
+    printf("%s\n", message);
+    abort();
+}
+//#include "foundation/switch/PxSwitchAbort.h"
 #endif
 
 void physx::PxAssert(const char* expr, const char* file, int line, bool& ignore)

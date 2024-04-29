@@ -47,6 +47,10 @@
 #include <intrin.h>
 #pragma warning(pop)
 
+#ifdef PX_XBOX360
+#include "360intrin.h"
+#endif
+
 #pragma warning(push)
 #pragma warning(disable : 4985) // 'symbol name': attributes not present on previous declaration
 #include <math.h>
@@ -54,7 +58,7 @@
 
 #include <float.h>
 // do not include for ARM target
-#if !PX_ARM && !PX_A64
+#if !PX_ARM && !PX_A64 && !PX_PPC64
 #include <mmintrin.h>
 #endif
 

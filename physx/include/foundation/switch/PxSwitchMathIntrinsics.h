@@ -32,7 +32,7 @@
 #include "foundation/Px.h"
 #include "foundation/PxAssert.h"
 
-#if !(PX_LINUX || PX_APPLE_FAMILY)
+#if !PX_SWITCH
 #error "This file should only be included by SWITCH builds!!"
 #endif
 

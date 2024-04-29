@@ -31,7 +31,7 @@
 
 PX_INLINE physx::PxSIMDGuard::PxSIMDGuard(bool enable) : mEnabled(enable)
 {
-#if !PX_ARM && !PX_A64
+#if !PX_ARM && !PX_A64 && !PX_PPC64
 	if (enable)
 	{
 		mControlWord = _mm_getcsr();
@@ -49,7 +49,7 @@ PX_INLINE physx::PxSIMDGuard::PxSIMDGuard(bool enable) : mEnabled(enable)
 
 PX_INLINE physx::PxSIMDGuard::~PxSIMDGuard()
 {
-#if !PX_ARM && !PX_A64
+#if !PX_ARM && !PX_A64 && !PX_PPC64
 	if (mEnabled)
 	{
 		// restore control word and clear any exception flags
