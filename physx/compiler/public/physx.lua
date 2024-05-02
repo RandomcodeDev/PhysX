@@ -1697,8 +1697,6 @@ function setup_physx(physx_root, fix_target, group, warnings)
 
             path.join(physx_root, "source", "physxextensions", "src", "serialization", "Xml"),
 
-            path.join(physx_root, "source", "pvdsdk", "src"),
-
             path.join(physx_root, "source", "pvd", "include")
         )
 
