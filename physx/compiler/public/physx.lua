@@ -452,6 +452,7 @@ function setup_physx(physx_root, fix_target, group, warnings)
     target("PhysX")
         set_kind("static")
         add_headerfiles(
+            path.join(physx_root, "compiler", "public", "physx.lua"),
             path.join(physx_root, "include", "PxActor.h"),
             path.join(physx_root, "include", "PxActorData.h"),
             path.join(physx_root, "include", "PxAggregate.h"),
